@@ -1,7 +1,6 @@
 import tkinter as tk
 import redis
 import json
-import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
@@ -12,9 +11,8 @@ def search_patient():
     patient_id = entry.get()
     vital_signs = json.loads(r.get(patient_id))
 
-    # Create a new figure and add a subplot
-    fig = Figure(figsize=(5, 4), dpi=100)
-    ax = fig.add_subplot(111)
+    # Clear the axes for the new plot
+    ax.clear()
 
     # Set the title
     ax.set_title(f'Vital Signs for {patient_id}')
@@ -30,14 +28,24 @@ def search_patient():
     ax.set_ylabel('Value')
     ax.legend()
 
-    # Create a canvas and add it to the GUI
-    canvas = FigureCanvasTkAgg(fig, master=root)
+    # Redraw the canvas with the new plot
     canvas.draw()
-    canvas.get_tk_widget().pack()
-        
+
 root = tk.Tk()
+root.geometry("800x600")  # Set initial size of the window
+
 entry = tk.Entry(root)
-entry.pack()
+entry.pack(padx=20, pady=20)  # Add padding around the entry field
+
 button = tk.Button(root, text="Search", command=search_patient)
-button.pack()
+button.pack(pady=10)  # Add padding above the button
+
+# Create a new figure and add a subplot
+fig = Figure(figsize=(5, 4), dpi=100)
+ax = fig.add_subplot(111)
+
+# Create a canvas and add it to the GUI
+canvas = FigureCanvasTkAgg(fig, master=root)
+canvas.get_tk_widget().pack()
+
 root.mainloop()
