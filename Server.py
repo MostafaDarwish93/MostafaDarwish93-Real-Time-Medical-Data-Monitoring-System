@@ -7,11 +7,17 @@ def receive_data():
     server_socket.bind(('localhost', 12345))
     server_socket.listen(1)
 
-    r = redis.Redis(host='redis-12507.c246.us-east-1-4.ec2.redns.redis-cloud.com', port=12507, password='A0e5sROUo9eHtfcUeEA1NyFxPMyWSfp3')
+    r = redis.Redis(host='redis-15549.c328.europe-west3-1.gce.redns.redis-cloud.com', port=15549, password='b3jfO2WviKF4kcD1PwgTTc4HpMEFYOsW')
+    print("Server started. Waiting for connections...")
 
     while True:
         client_socket, addr = server_socket.accept()
+        print(f"Accepted connection from {addr}")
+
         data = json.loads(client_socket.recv(1024).decode())
+        print(f"Received data: {data}")
+
         r.set(data["patient_id"], json.dumps(data["vital_signs"]))
+
 
 receive_data()
