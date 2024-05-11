@@ -1,4 +1,4 @@
-# MostafaDarwish93-Real-Time-Medical-Data-Monitoring-System# Project Purpose
+# Real-Time-Medical-Data-Monitoring-System
 
 This project is a real-time patient vital signs monitoring system. It consists of a client that generates random vital signs for a patient and sends this data to a server via a socket connection. The server then stores this data in a Redis database. There is also a GUI application that retrieves the vital signs for a specific patient from the Redis database and displays them in a plot.
 
