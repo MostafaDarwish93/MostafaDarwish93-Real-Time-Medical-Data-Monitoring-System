@@ -7,7 +7,7 @@ def receive_data():
     server_socket.bind(('localhost', 12345))
     server_socket.listen(1)
 
-    r = redis.Redis(host='redis-15549.c328.europe-west3-1.gce.redns.redis-cloud.com', port=15549, password='b3jfO2WviKF4kcD1PwgTTc4HpMEFYOsW')
+    r = redis.Redis(host='redis-15549.c328.europe-west3-1.gce.redns.redis-cloud.com', port=15549, password='')
     print("Server started. Waiting for connections...")
 
     while True:

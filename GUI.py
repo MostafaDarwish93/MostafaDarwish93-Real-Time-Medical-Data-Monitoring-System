@@ -11,7 +11,7 @@ vital_signs = None
 
 def search_patient():
     global vital_signs, index
-    r = redis.Redis(host='redis-15549.c328.europe-west3-1.gce.redns.redis-cloud.com', port=15549, password='b3jfO2WviKF4kcD1PwgTTc4HpMEFYOsW')
+    r = redis.Redis(host='redis-15549.c328.europe-west3-1.gce.redns.redis-cloud.com', port=15549, password='')
     patient_id = entry.get()
     vital_signs = json.loads(r.get(patient_id))
 
