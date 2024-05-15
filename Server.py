@@ -14,10 +14,16 @@ def receive_data():
         client_socket, addr = server_socket.accept()
         print(f"Accepted connection from {addr}")
 
-        data = json.loads(client_socket.recv(1024).decode())
-        print(f"Received data: {data}")
+        while True:
+            data = client_socket.recv(1024)
+            if not data:
+                break
 
-        r.set(data["patient_id"], json.dumps(data["vital_signs"]))
+            data = json.loads(data.decode())
+            print(f"Received data: {data}")
 
+            r.set(data["patient_id"], json.dumps(data["vital_signs"]))
+
+        print(f"Connection with {addr} closed")
 
 receive_data()

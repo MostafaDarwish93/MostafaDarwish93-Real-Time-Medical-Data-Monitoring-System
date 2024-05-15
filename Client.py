@@ -13,10 +13,11 @@ def send_data():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect(('localhost', 12345))
 
-    patient_id = input("Enter patient ID: ")
-    
     while True:
-        
+        patient_id = input("Enter patient ID (or 'quit' to stop): ")
+        if patient_id.lower() == 'quit':
+            break
+
         vital_signs = generate_vital_signs()
         data = {"patient_id": patient_id, "vital_signs": vital_signs}
         client_socket.send(json.dumps(data).encode())
